@@ -11,9 +11,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set-up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: "10.x"
+          node-version: "14.x"
+          cache: 'npm'
       - run: git config --global user.email "gupta.shivam1490@gmail.com"
       - run: git config --global user.name "Shivam Gupta"
       - run: npm install
