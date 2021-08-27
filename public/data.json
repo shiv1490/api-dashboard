@@ -1,0 +1,34 @@
+{
+  "cloud": [
+    {
+      "id": 1,
+      "name": "Amazon API Gateway (Seoul)",
+      "status": 1,
+      "apiEndpoint": "",
+      "swaggerURL": ""
+    },
+    {
+      "id": 2,
+      "name": "Amazon AppFlow (Sydney)",
+      "status": 1,
+      "apiEndpoint": "",
+      "swaggerURL": ""
+    }
+  ],
+  "native": [
+    {
+      "id": 1,
+      "name": "Amazon Augmented AI (Tokyo)",
+      "status": 0,
+      "apiEndpoint": "",
+      "swaggerURL": ""
+    },
+    {
+      "id": 2,
+      "name": "Amazon Cloud Directory (Sydney)",
+      "status": 0,
+      "apiEndpoint": "",
+      "swaggerURL": ""
+    }
+  ]
+}

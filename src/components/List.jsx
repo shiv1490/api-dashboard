@@ -17,7 +17,6 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { ExpandMore, CheckCircle, StopRounded } from "@material-ui/icons";
-// import apiConfig from "../config";
 
 const useStyles = makeStyles({
   tableContainer: {
@@ -55,11 +54,15 @@ const List = () => {
   const [apiList, setAPIList] = useState({});
 
   useEffect(() => {
-    const apiList = async () => {
-      const res = await axios.get("http://localhost:8081/api/test");
-      setAPIList(res.data.result);
-    };
-    apiList();
+    try {
+      const apiList = async () => {
+        const res = await axios.get("data.json");
+        setAPIList(res.data || res.data.result);
+      };
+      apiList();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
