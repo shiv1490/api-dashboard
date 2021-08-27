@@ -16,3 +16,5 @@ jobs:
           node-version: "10.x"
       - run: npm install
       - run: npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_SECRET_TOKEN }}
