@@ -2,14 +2,14 @@
   "cloud": [
     {
       "id": 1,
-      "name": "Amazon API Gateway (Seoul)",
+      "name": "Amazon 2 API Gateway (Seoul)",
       "status": 1,
       "apiEndpoint": "",
       "swaggerURL": ""
     },
     {
       "id": 2,
-      "name": "Amazon AppFlow (Sydney)",
+      "name": "Amazon App Flow (Sydney)",
       "status": 1,
       "apiEndpoint": "",
       "swaggerURL": ""
