@@ -17,6 +17,11 @@ jobs:
       - run: git config --global user.email "gupta.shivam1490@gmail.com"
       - run: git config --global user.name "Shivam Gupta"
       - run: npm install
-      - run: npm run deploy
+      - run: npm run build
+      - name: Deploy
+        uses: crazy-max/ghaction-github-pages@v1
+        with:
+          target_branch: gh-pages
+          build_dir: build
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_SECRET_TOKEN }}
