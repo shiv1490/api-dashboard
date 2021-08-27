@@ -19,14 +19,14 @@
     {
       "id": 1,
       "name": "Amazon Augmented AI (Tokyo)",
-      "status": 0,
+      "status": 1,
       "apiEndpoint": "",
       "swaggerURL": ""
     },
     {
       "id": 2,
       "name": "Amazon Cloud Directory (Sydney)",
-      "status": 0,
+      "status": 1,
       "apiEndpoint": "",
       "swaggerURL": ""
     }
