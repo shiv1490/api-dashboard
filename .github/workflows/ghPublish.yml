@@ -14,6 +14,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "10.x"
+      - run: git config --global user.email "gupta.shivam1490@gmail.com"
+      - run: git config --global user.name "Shivam Gupta"
       - run: npm install
       - run: npm run deploy
         env:
