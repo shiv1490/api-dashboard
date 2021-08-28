@@ -1,63 +1,48 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import SearchApi from "./SearchComponent";
+import APITable from "./Table";
 import {
   Container,
   Box,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Paper,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Typography,
-  makeStyles,
+  FormControlLabel,
+  Switch,
 } from "@material-ui/core";
-import { ExpandMore, CheckCircle, StopRounded } from "@material-ui/icons";
-
-const useStyles = makeStyles({
-  tableContainer: {
-    display: "flex",
-    width: "100%",
-  },
-  accordion: {
-    border: "1px solid rgba(0, 0, 0, .125)",
-    borderBottom: "inherit !important",
-    "&:before": {
-      display: "none",
-    },
-    "&$expanded": {
-      margin: "auto",
-    },
-  },
-  accordionSummary: {
-    backgroundColor: "rgba(0, 0, 0, .03)",
-    borderBottom: "1px solid rgba(0, 0, 0, .125)",
-    marginBottom: -1,
-    minHeight: 56,
-    "&$expanded": {
-      minHeight: 56,
-    },
-  },
-  content: {
-    "&$expanded": {
-      margin: "12px 0",
-    },
-  },
-});
+import { ExpandMore } from "@material-ui/icons";
+import { useListStyle } from "../styles";
+import { getUniqueKeyListfromObject } from "../utils";
 
 const List = () => {
-  const classes = useStyles();
-  const [apiList, setAPIList] = useState({});
+  const props = {
+    apiNameWidth: "32%",
+  };
+  const classes = useListStyle(props);
+  const [apiList, setAPIList] = useState([]);
+  const [originalApiList, setOriginalApiList] = useState([]);
+  const [expandedAcc, setExpandAcc] = useState({});
+  const [expandAccordionPlug, setExpandAccordionPlug] = useState(false);
+
+  const setAccordionExpansion = (data, flag) => {
+    const keys = getUniqueKeyListfromObject(data);
+    const newExpand = {};
+    keys.forEach((key) => {
+      newExpand[key] = flag;
+    });
+
+    return setExpandAcc(newExpand);
+  };
 
   useEffect(() => {
     try {
       const apiList = async () => {
         const res = await axios.get("data.json");
-        setAPIList(res.data || res.data.result);
+        setAPIList(res.data);
+        setOriginalApiList(res.data);
+        setAccordionExpansion(res.data, false);
       };
       apiList();
     } catch (error) {
@@ -65,63 +50,68 @@ const List = () => {
     }
   }, []);
 
+  const filterAccordionData = (e, values) => {
+    if (values.length) {
+      setAPIList(values);
+      setAccordionExpansion(values, true);
+    } else {
+      setExpandAcc({});
+      setAPIList(originalApiList);
+      setExpandAccordionPlug(false);
+    }
+  };
+
+  const expandCollapseAccordion = () => {
+    setAccordionExpansion(apiList, !expandAccordionPlug);
+    setExpandAccordionPlug(!expandAccordionPlug);
+  };
+
   return (
     <Container>
       <Box mt={2}>
-        {Object.keys(apiList).map((key) => {
+        <Box display="flex" justifyContent="space-between" mb={2}>
+          <SearchApi
+            apiList={originalApiList}
+            filterAccordionData={filterAccordionData}
+          ></SearchApi>
+
+          <FormControlLabel
+            control={
+              <Switch
+                checked={expandAccordionPlug}
+                disabled={apiList.length !== originalApiList.length}
+                onChange={expandCollapseAccordion}
+                name="expandSwitch"
+              />
+            }
+            label={"Expand All"}
+          />
+        </Box>
+        {getUniqueKeyListfromObject(apiList).map((key) => {
           return (
-            <Accordion className={classes.accordion} square key={key}>
-              <AccordionSummary
-                expandIcon={<ExpandMore />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-                className={classes.accordionSummary}
+            <Box key={key}>
+              <Accordion
+                expanded={expandedAcc[key] || false}
+                onChange={(e, v) => setExpandAcc({ ...expandedAcc, [key]: v })}
+                className={classes.accordion}
+                square
+                key={key}
               >
-                <Typography variant="h6">
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Box mt={3} className={classes.tableContainer}>
-                  <TableContainer component={Paper}>
-                    <Table stickyHeader aria-label="simple table">
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>API Name</TableCell>
-                          <TableCell align="left">API Details</TableCell>
-                          <TableCell align="left">Status</TableCell>
-                          <TableCell align="left">Extra</TableCell>
-                          <TableCell align="left">Extra</TableCell>
-                        </TableRow>
-                      </TableHead>
-                      {apiList[key].map((apiArrayList) => (
-                        <TableBody key={apiArrayList.id}>
-                          <TableRow>
-                            <TableCell component="th" scope="row">
-                              {apiArrayList.name}
-                            </TableCell>
-                            <TableCell align="left">
-                              {apiArrayList.status
-                                ? "Service is operating normally"
-                                : "Service is facing issues"}
-                            </TableCell>
-                            <TableCell align="left">
-                              {apiArrayList.status ? (
-                                <CheckCircle color="primary" />
-                              ) : (
-                                <StopRounded color="secondary" />
-                              )}
-                            </TableCell>
-                            <TableCell align="left">{"Test"}</TableCell>
-                            <TableCell align="left">{"Test"}</TableCell>
-                          </TableRow>
-                        </TableBody>
-                      ))}
-                    </Table>
-                  </TableContainer>
-                </Box>
-              </AccordionDetails>
-            </Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMore />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                  className={classes.accordionSummary}
+                >
+                  <Typography variant="h6">{key}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Box mt={3} className={classes.tableContainer}>
+                    <APITable apiList={apiList} keyItem={key}></APITable>
+                  </Box>
+                </AccordionDetails>
+              </Accordion>
+            </Box>
           );
         })}
       </Box>
