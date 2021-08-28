@@ -1,0 +1,44 @@
+ [
+     {
+         "id": 1,
+         "environment": "Cloud",
+         "name": "Amazon API Gateway (Seoul)",
+         "status": 1,
+         "gitRepoURL": "https://reactjs.org/",
+          "swaggerURL": "https://reactjs.org/",
+          "buildURL" :"https://reactjs.org/",
+          "logsURL" : ""
+    },
+     {
+         "id": 2,
+         "environment": "Cloud",
+         "name": "Amazon AppFlow (Sydney)",
+         "status": 1,
+         "gitRepoURL": "https://reactjs.org/",
+        "swaggerURL": "https://reactjs.org/",
+        "buildURL" :"https://reactjs.org/",
+        "logsURL" : ""
+    },
+
+     {
+         "id": 3,
+         "environment": "Cloud Native",
+         "name": "Amazon Augmented AI (Tokyo)",
+         "status": 0,
+         "gitRepoURL": "https://reactjs.org/",
+         "swaggerURL": "https://reactjs.org/",
+         "buildURL" :"https://reactjs.org/",
+         "logsURL" : ""
+    },
+     {
+         "id": 4,
+         "environment": "On Premises",
+         "name": "Amazon Cloud Directory (Sydney)",
+         "status": 0,
+         "gitRepoURL": "https://reactjs.org/",
+         "swaggerURL": "https://reactjs.org/",
+         "buildURL" :"https://reactjs.org/",
+         "logsURL" : ""
+    }
+  ]
+ 
