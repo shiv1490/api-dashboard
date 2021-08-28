@@ -6,6 +6,7 @@ import {
   TableCell,
   TableBody,
   Paper,
+  Link,
 } from "@material-ui/core";
 import { CheckCircle, ErrorOutlineRounded } from "@material-ui/icons";
 
@@ -15,18 +16,21 @@ const APITable = ({ apiList, keyItem }) => {
       <Table stickyHeader aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell style={{ width: "32%" }}>API Name</TableCell>
-            <TableCell style={{ width: "30%" }} align="left">
+            <TableCell style={{ width: "22%" }}>API Name</TableCell>
+            <TableCell style={{ width: "20%" }} align="left">
               API Details
             </TableCell>
-            <TableCell style={{ width: "13%" }} align="left">
+            <TableCell style={{ width: "7%" }} align="left">
               Status
             </TableCell>
-            <TableCell style={{ width: "12%" }} align="left">
-              Extra
+            <TableCell style={{ width: "7%" }} align="left">
+              Git Repo
             </TableCell>
-            <TableCell style={{ width: "12%" }} align="left">
-              Extra
+            <TableCell style={{ width: "7%" }} align="left">
+              Build
+            </TableCell>
+            <TableCell style={{ width: "7%" }} align="left">
+              Logs
             </TableCell>
           </TableRow>
         </TableHead>
@@ -36,7 +40,9 @@ const APITable = ({ apiList, keyItem }) => {
             <TableBody key={apiArrayList.id}>
               <TableRow>
                 <TableCell component="th" scope="row">
-                  {apiArrayList.name}
+                  <Link href={apiArrayList.swaggerURL} target="_blank">
+                    {apiArrayList.name}
+                  </Link>
                 </TableCell>
                 <TableCell align="left">
                   {apiArrayList.status
@@ -50,8 +56,21 @@ const APITable = ({ apiList, keyItem }) => {
                     <ErrorOutlineRounded style={{ color: "red" }} />
                   )}
                 </TableCell>
-                <TableCell align="left">{"Test"}</TableCell>
-                <TableCell align="left">{"Test"}</TableCell>
+                <TableCell align="left">
+                  <Link href={apiArrayList.gitRepoURL} target="_blank">
+                    Link
+                  </Link>
+                </TableCell>
+                <TableCell align="left">
+                  <Link href={apiArrayList.buildURL} target="_blank">
+                    Link
+                  </Link>
+                </TableCell>
+                <TableCell align="left">
+                  <Link href={apiArrayList.logsURL} target="_blank">
+                    Link
+                  </Link>
+                </TableCell>
               </TableRow>
             </TableBody>
           ))}
