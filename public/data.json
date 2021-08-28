@@ -1,36 +1,36 @@
  [
-    {
-      "id": 1,
-      "environment": "Cloud",
-      "name": "Amazon API Gateway (Seoul)",
-      "status": 1,
-      "apiEndpoint": "",
-      "swaggerURL": ""
+     {
+         "id": 1,
+         "environment": "Cloud",
+         "name": "Amazon API Gateway (Seoul)",
+         "status": 1,
+         "apiEndpoint": "",
+         "swaggerURL": ""
     },
-    {
-      "id": 2,
-      "environment": "Cloud",
-      "name": "Amazon AppFlow (Sydney)",
-      "status": 1,
-      "apiEndpoint": "",
-      "swaggerURL": ""
+     {
+         "id": 2,
+         "environment": "Cloud",
+         "name": "Amazon AppFlow (Sydney)",
+         "status": 1,
+         "apiEndpoint": "",
+         "swaggerURL": ""
     },
 
-    {
-      "id": 3,
-      "environment": "Cloud Native",
-      "name": "Amazon Augmented AI (Tokyo)",
-      "status": 0,
-      "apiEndpoint": "",
-      "swaggerURL": ""
+     {
+         "id": 3,
+         "environment": "Cloud Native",
+         "name": "Amazon Augmented AI (Tokyo)",
+         "status": 0,
+         "apiEndpoint": "",
+         "swaggerURL": ""
     },
-    {
-      "id": 4,
-      "environment": "On Premises",
-      "name": "Amazon Cloud Directory (Sydney)",
-      "status": 0,
-      "apiEndpoint": "",
-      "swaggerURL": ""
+     {
+         "id": 4,
+         "environment": "On Premises",
+         "name": "Amazon Cloud Directory (Sydney)",
+         "status": 0,
+         "apiEndpoint": "",
+         "swaggerURL": ""
     }
   ]
-
+ 
